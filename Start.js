@@ -54,3 +54,18 @@ export default function App() {
     setAnswer('');
     setScreen('test');
   };
+
+  const finishTest = () => {
+    if (!answer || !selectedTest) return;
+
+    const result = {
+      id: String(Date.now()),
+      title: selectedTest.title,
+      answer,
+      date: new Date().toLocaleDateString(),
+    };
+
+    setLastResult(result);
+    setHistory((previous) => [result, ...previous]);
+    setScreen('result');
+  };
